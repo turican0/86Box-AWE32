@@ -50,6 +50,7 @@ add_library(snd OBJECT
     snd_sb.c
     snd_sb_dsp.c
     snd_emu8k.c
+    snd_emu8k_trace.c
     snd_mmb.c
     snd_mpu401.c
     snd_pas16.c
