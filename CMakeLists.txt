@@ -102,6 +102,13 @@ endif()
 add_compile_definitions(CMAKE)
 add_compile_definitions("$<$<CONFIG:Debug>:DEBUG>")
 
+if(MINGW AND STATIC_BUILD)
+    # The static OpenSSL libcrypto (pulled in by the static Qt Network module)
+    # needs BCryptGenRandom; at the end of the link line, after libcrypto.
+    string(APPEND CMAKE_C_STANDARD_LIBRARIES " -lbcrypt")
+    string(APPEND CMAKE_CXX_STANDARD_LIBRARIES " -lbcrypt")
+endif()
+
 if(WIN32)
     # Disables *_s function warnings
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
